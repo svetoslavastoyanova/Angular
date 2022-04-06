@@ -53,7 +53,7 @@ export class BrowserStorage {
 export class ServerStorage {
 
   localStorage = {
-    data: {},
+    data: {} as {[key:string]: any},
     setItem<T>(key: string, item: T): void {
       this.data[key] = item;
     },

@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
-import { UserService } from 'src/app/user/user.service';
+import { IUser } from '../interfaces';
+import { UserService } from '../user.service';
+
 
 @Component({
   selector: 'app-header',
@@ -8,12 +10,17 @@ import { UserService } from 'src/app/user/user.service';
 })
 export class HeaderComponent {
 
-  constructor(public userService: UserService) { }
-
   get isLogged(): boolean {
-    return this.userService.isLogged; //polzwame direktno promenliwata wmesto userService w html-a
+    return this.userService.isLogged;
   }
 
+  get currentUser(): IUser { // generirame getter za current usera. za da izpiswa prawilno usera w htmla
+    return this.userService.currentUser;
+  }
+
+  constructor(public userService: UserService) {
+
+  }
 
   logoutHandler(): void {
     this.userService.logout();
